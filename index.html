@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intro Video</title>
+    <link rel="stylesheet" href="123.css">
+    
+      
+</head>
+<body>
+    <!-- Container untuk video dan tombol -->
+    <div class="container">
+        <!-- Video dengan audio -->
+        <video id="introVideo" class="video" autoplay muted loop>
+            <source src="intro.mp4" type="video/mp4">
+            Browser kamu tidak mendukung video tag.
+        </video>
+
+        <!-- Gambar tombol di tengah atas video -->
+        <img src="11.png" alt="Play" class="play-btn" onclick="startMedia()">
+        
+        <!-- Audio -->
+        <audio id="introAudio">
+            <source src="intro.mp3" type="audio/mp3">
+            Browser kamu tidak mendukung audio tag.
+        </audio>
+    </div>
+
+   <script>
+        // Fungsi untuk mulai memainkan video dan audio
+        function startMedia() {
+            const video = document.getElementById("introVideo");
+            const audio = document.getElementById("introAudio");
+
+            // Pastikan audio tidak muted dan mulai diputar
+            audio.muted = false;
+            audio.play();
+
+            // Mainkan video jika belum diputar
+            video.play();
+        }
+    </script>
+
+    <script>
+        // Ambil elemen video dan audio
+        const video = document.getElementById("introVideo");
+        const audio = document.getElementById("introAudio");
+
+        // Fungsi untuk mulai memainkan video dan audio
+        function startMedia() {
+            // Pastikan audio tidak muted dan mulai diputar
+            audio.muted = false;
+            audio.play();
+
+            // Mainkan video jika belum diputar
+            video.play();
+        }
+
+        // Sinkronisasi audio dan video
+        video.addEventListener("play", () => {
+            audio.muted = false; // Pastikan audio tidak dalam mode muted
+            audio.play(); // Mulai audio saat video diputar
+        });
+
+        video.addEventListener("pause", () => {
+            audio.pause(); // Jeda audio saat video dijeda
+        });
+
+        video.addEventListener("timeupdate", () => {
+            const difference = Math.abs(audio.currentTime - video.currentTime);
+            if (difference > 0.3) { 
+                audio.currentTime = video.currentTime; // Sinkronkan waktu audio dengan video jika terlalu jauh
+            }
+        });
+
+        video.addEventListener("seeked", () => {
+            audio.currentTime = video.currentTime; // Sinkronkan audio jika video di-seek
+        });
+
+        video.addEventListener("volumechange", () => {
+            audio.volume = video.volume; // Sinkronkan volume audio dengan video
+        });
+
+        // Coba autoplay saat halaman dimuat
+        window.onload = () => {
+            // Set audio dalam mode muted awal untuk menghindari blokir autoplay
+            audio.muted = true;
+            audio.play().then(() => {
+                audio.muted = false; // Aktifkan audio setelah autoplay
+            }).catch((error) => {
+                console.error("Autoplay gagal: ", error);
+            });
+
+            video.play().catch((error) => {
+                console.error("Autoplay video gagal: ", error);
+            });
+        };
+    </script>
+
+    <!-- Teks ketikan -->
+    <div id="typingText" class="typing-text">Selamat Datang di Kelas 9f! Project Website MTs Assalafiyyah Mlangi 😇</div>
+
+    <script>
+        // Menyembunyikan teks setelah 7 detik
+        setTimeout(function() {
+            document.getElementById("typingText").style.display = "none";
+        }, 13000);
+
+        // Mengarahkan ke halaman utama setelah 10 detik
+        setTimeout(function() {
+            window.location.href = "utama.html";
+        }, 13000);
+    </script>
+</body>
+</html>
