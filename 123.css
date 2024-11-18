@@ -1,0 +1,127 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%; /* Pastikan halaman mengisi seluruh layar */
+    display: flex;
+    justify-content: center; /* Menyusun elemen secara horizontal (di tengah) */
+    align-items: flex-start;  /* Menyusun elemen di bagian atas (bukan vertikal tengah) */
+    background-color: black;
+}
+
+.content {
+    text-align: center;
+    color: white; /* Warna teks */
+    margin-top: 1.5px; /* Jarak dari atas */
+    text-shadow: 
+        -1px -1px 0 black, /* Bayangan ke kiri atas */
+        1px -1px 0 black,  /* Bayangan ke kanan atas */
+        -1px 1px 0 black,  /* Bayangan ke kiri bawah */
+        1px 1px 0 black;   /* Bayangan ke kanan bawah */
+}
+
+.container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+.video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+
+
+
+.btn {
+    padding: 15px 30px;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: black;
+    font-size: 1.5rem;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.btn:hover {
+    transform: scale(1.1);
+}
+h1 {
+    font-size: 5rem;
+    margin-bottom: 150px;
+}
+
+
+
+/* Background Video untuk halaman utama */
+.background-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.background-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Konten di atas background video */
+.content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+}
+
+/* Teks ketikan */
+.typing-text {
+    position: absolute;
+    bottom: 70px;  /* Menempatkan teks sekitar 70px dari bawah */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2rem;
+    color: white;
+    font-family: "Courier New", Courier, monospace;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 4px solid rgba(255, 255, 255, 0.75);
+    width: 0;  /* Mulai dengan lebar 0 untuk animasi ketikan */
+    animation: typing 7s steps(30) 1s forwards, blink 0.75s step-end infinite;
+}
+
+/* Animasi ketikan */
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+/* Efek kedip untuk kursor */
+@keyframes blink {
+    50% {
+        border-color: transparent;
+    }
+}
+.play-btn {
+    position: absolute;
+    top: 35%; /* Tempatkan gambar di 10% dari atas */
+    left: 50%; /* Tempatkan gambar di tengah secara horizontal */
+    transform: translateX(-50%); /* Sesuaikan agar gambar tepat di tengah */
+    width: 80px; /* Ukuran gambar */
+    cursor: pointer; /* Tampilkan cursor pointer saat di-hover */
+}
