@@ -16,9 +16,44 @@
         Browser kamu tidak mendukung video tag.
     </video>
 
-    
+    <!-- Audio -->
+    <audio id="introAudio">
+        <source src="123.mp3" type="audio/mp3">
+        Browser kamu tidak mendukung audio tag.
+    </audio>
 </div>
+<script >
+// Ambil elemen video dan audio
+const video = document.getElementById("introVideo");
+const audio = document.getElementById("introAudio");
 
+// Sinkronisasi audio dan video
+video.addEventListener("play", () => {
+    audio.play(); // Mulai audio saat video diputar
+});
+
+video.addEventListener("pause", () => {
+    audio.pause(); // Jeda audio saat video dijeda
+});
+
+video.addEventListener("timeupdate", () => {
+    const difference = Math.abs(audio.currentTime - video.currentTime);
+
+    // Sinkronisasi hanya jika perbedaan waktu lebih besar dari 0.5 detik
+    if (difference > 0.5) {
+        audio.currentTime = video.currentTime;
+    }
+});
+
+video.addEventListener("seeked", () => {
+    // Sinkronkan audio ketika pengguna mencari posisi video tertentu
+    audio.currentTime = video.currentTime;
+});
+
+video.addEventListener("volumechange", () => {
+    audio.volume = video.volume; // Sinkronkan volume audio dengan video
+});
+</script>
 
 
     </div>
